@@ -4,10 +4,15 @@ using HackerNewsCli.Scraping;
 
 namespace HackerNewsCli.HackerNews.Scraping
 {
+    /// <summary>
+    ///     Takes the raw text from html elements in the form of <see cref="ScrapedPostContent" /> objects provided by
+    ///     <see cref="HackerNewsPostPageScraper" /> and converts those to <see cref="Post" />s.
+    /// </summary>
     public class ScrapedPostContentParser : IConverter<ScrapedPostContent, Post>
     {
         public Post Convert(ScrapedPostContent scrapedPost)
         {
+            // Convert the raw text from DOM elements to a valid Post object.
             var title = ParseTitleText(scrapedPost);
             var uri = ParseUrlText(scrapedPost);
             var author = ParseAuthorText(scrapedPost);
@@ -53,6 +58,7 @@ namespace HackerNewsCli.HackerNews.Scraping
                 throw new HackerNewsScrapeException($"No comments text scraped for a post on {scrapedPost.SourcePageUri}");
             }
 
+            // Note: When there are no comments for an item, the text "discuss" is shown instead of "0 comments".
             if (scrapedPost.CommentsText == "discuss")
             {
                 return 0;

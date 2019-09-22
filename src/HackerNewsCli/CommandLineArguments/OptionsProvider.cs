@@ -20,6 +20,7 @@ namespace HackerNewsCli.CommandLineArguments
 
         public OptionsParseResult ParseArguments(string[] arguments)
         {
+            // Create an IConfigurationRoot from the provided arguments.
             IConfigurationRoot config;
             try
             {
@@ -32,6 +33,7 @@ namespace HackerNewsCli.CommandLineArguments
                 return OptionsParseResult.Failure(UsageText);
             }
 
+            // Read the content of the "posts" argument, if there is one.
             var numberOfPostsStr = config.GetValue<string>("posts");
             if (string.IsNullOrWhiteSpace(numberOfPostsStr) ||
                 !int.TryParse(numberOfPostsStr, out var numberOfPosts))
@@ -39,8 +41,10 @@ namespace HackerNewsCli.CommandLineArguments
                 return OptionsParseResult.Failure(UsageText);
             }
 
+            // The posts argument was a valid integer. Check it is within range.
             if (numberOfPosts <= 0 || numberOfPosts > 100)
             {
+                // If the user has supplied an integer that is out of range, the help text will advise them of the valid range.
                 var helpText = new StringBuilder()
                     .AppendLine("Number of posts must be between 1 and 100.")
                     .AppendLine()

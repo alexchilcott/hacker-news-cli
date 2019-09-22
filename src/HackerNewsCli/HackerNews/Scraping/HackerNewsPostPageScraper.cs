@@ -8,6 +8,13 @@ using HackerNewsCli.Scraping;
 
 namespace HackerNewsCli.HackerNews.Scraping
 {
+    /// <summary>
+    ///     Scrapes the hacker news post pages and returns an array of <see cref="ScrapedPostContent" />s, with each item
+    ///     representing a post.
+    ///     <see cref="ScrapedPostContent" /> objects contain the raw, un-parsed text of the posts. The focus of this
+    ///     <see cref="IScraper{T}" /> is to read the raw text from HTML elements. The parsing of this data occurs in
+    ///     <see cref="ScrapedPostContentParser" />.
+    /// </summary>
     public class HackerNewsPostPageScraper : IScraper<ScrapedPostContent[]>
     {
         private readonly HttpMessageHandler _httpMessageHandler;
@@ -40,6 +47,7 @@ namespace HackerNewsCli.HackerNews.Scraping
         {
             var postSubRowTableRowCell = postTitleTableRowCell.NextElementSibling;
 
+            // Get the raw text from various elements in the DOM.
             var rankElementText = ScrapeRankElementText(postTitleTableRowCell, pageUri);
             var titleElementText = ScrapeTitleElementText(postTitleTableRowCell, pageUri);
             var uriElementText = ScrapeLinkHrefText(postTitleTableRowCell, pageUri);

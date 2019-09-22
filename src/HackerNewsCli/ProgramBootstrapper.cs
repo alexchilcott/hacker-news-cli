@@ -13,6 +13,9 @@ namespace HackerNewsCli
     {
         private static int Main(string[] args)
         {
+            // This method's only responsibility is to register the components of the application
+            // in the dependency container, and to then resolve and run the program.
+
             var services = GetServiceCollection();
             var serviceProvider = services.BuildServiceProvider();
             var program = serviceProvider.GetService<Program>();

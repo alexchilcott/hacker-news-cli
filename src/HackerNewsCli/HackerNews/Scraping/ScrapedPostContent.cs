@@ -2,6 +2,9 @@
 
 namespace HackerNewsCli.HackerNews.Scraping
 {
+    /// <summary>
+    ///     The raw text content from various elements relating to a single post of the HackerNews top stories page
+    /// </summary>
     public class ScrapedPostContent
     {
         public ScrapedPostContent(

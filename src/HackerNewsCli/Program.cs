@@ -30,18 +30,25 @@ namespace HackerNewsCli
         {
             try
             {
+                // Parse the command line arguments.
                 var optionsParseResult = _optionsProvider.ParseArguments(args);
 
                 if (!optionsParseResult.ParsedSuccessfully)
                 {
+                    // Display the help text if the arguments could not be parsed.
                     _outputWriter.WriteLine(optionsParseResult.HelpText);
                     return -1;
                 }
 
                 var options = optionsParseResult.Options;
+
+                // Retrieve the posts from HackerNews
                 var posts = await _hackerNewsTopPostRetriever.GetTopPostsAsync(options.NumberOfPosts);
+
+                // Output the posts to the user.
                 var json = _jsonSerializer.Serialize(posts);
                 _outputWriter.WriteLine(json);
+
                 return 0;
             }
             catch (Exception ex)
