@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.13.0" />
+    <PackageReference Include="nunit" Version="3.11.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HackerNewsCli\HackerNewsCli.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="HackerNews\Scraping\FailureTestCases\single-post-missing-comments.html" />
+    <EmbeddedResource Include="HackerNews\Scraping\FailureTestCases\single-post-missing-author.html" />
+    <EmbeddedResource Include="HackerNews\Scraping\FailureTestCases\single-post-missing-score.html" />
+    <EmbeddedResource Include="HackerNews\Scraping\FailureTestCases\single-post-missing-storylink.html" />
+    <EmbeddedResource Include="HackerNews\Scraping\FailureTestCases\single-post-missing-rank.html" />
+    <EmbeddedResource Include="HackerNews\Scraping\SuccessTestCases\single-discussion-post.html" />
+    <EmbeddedResource Include="HackerNews\Scraping\SuccessTestCases\single-post-single-point.html" />
+    <EmbeddedResource Include="HackerNews\Scraping\SuccessTestCases\single-post-single-comment.html" />
+    <EmbeddedResource Include="HackerNews\Scraping\SuccessTestCases\single-post-no-comments.html" />
+    <EmbeddedResource Include="HackerNews\Scraping\SuccessTestCases\single-external-link-post.html" />
+    <EmbeddedResource Include="HackerNews\Scraping\SuccessTestCases\three-posts.html" />
+  </ItemGroup>
+
+</Project>
