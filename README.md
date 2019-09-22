@@ -22,6 +22,18 @@ To run, having run `build.bat`, run (from the `./bin` directory):
 
 ```dotnet .\HackerNewsCli.dll --posts <number-of-posts>```
 
+### Building and Running with Docker
+
+The application can be built and run using the supplied `Dockerfile`.
+
+To do so, run 
+
+```docker build . -t hackernews```
+
+followed by
+
+```docker run hackernews --posts 25```
+
 ## Libraries Used
 
 * `AngleSharp` and `AngleSharp.IO` are used for the parsing of HTML into a DOM and querying the DOM using CSS selectors.
