@@ -40,7 +40,10 @@ namespace HackerNewsCli.HackerNews.Scraping
                 throw new HackerNewsScrapeException($"Could not find any title row cells on page at {pageUri}");
             }
 
-            return postTitleTableRowCells.Select(x => ScrapePostFromPage(x, pageUri)).ToArray();
+            return postTitleTableRowCells
+                .Select(x => ScrapePostFromPage(x, pageUri))
+                .Where(x => x != null)
+                .ToArray();
         }
 
         private ScrapedPostContent ScrapePostFromPage(IElement postTitleTableRowCell, Uri pageUri)
@@ -54,6 +57,16 @@ namespace HackerNewsCli.HackerNews.Scraping
             var pointsElementText = ScrapePointsElementText(postSubRowTableRowCell, pageUri);
             var authorElementText = ScrapeAuthorElementText(postSubRowTableRowCell, pageUri);
             var commentsElementText = ScrapeCommentsElementText(postSubRowTableRowCell, pageUri);
+            if (rankElementText == null
+                || titleElementText == null
+                || uriElementText == null
+                || pointsElementText == null
+                || authorElementText == null
+                || commentsElementText == null)
+            {
+                return null;
+            }
+
             var scrapeResult = new ScrapedPostContent(
                 pageUri,
                 titleElementText,
@@ -70,7 +83,7 @@ namespace HackerNewsCli.HackerNews.Scraping
             var commentsElement = postSubRowTableRowCell.QuerySelectorAll("a[href]").Last();
             if (commentsElement == null)
             {
-                throw new HackerNewsScrapeException($"No comments element could be determined for a post on {pageUri}");
+                return null;
             }
 
             var commentsElementText = commentsElement.TextContent;
@@ -82,7 +95,7 @@ namespace HackerNewsCli.HackerNews.Scraping
             var authorElement = postSubRowTableRowCell.QuerySelector("a.hnuser");
             if (authorElement == null)
             {
-                throw new HackerNewsScrapeException($"No author element could be determined for a post on {pageUri}");
+                return null;
             }
 
             var author = authorElement.TextContent;
@@ -94,7 +107,7 @@ namespace HackerNewsCli.HackerNews.Scraping
             var pointsElementForPost = postSubRowTableRowCell.QuerySelector(".score");
             if (pointsElementForPost == null)
             {
-                throw new HackerNewsScrapeException($"No points element could be determined for a post on {pageUri}");
+                return null;
             }
 
             var pointsElementText = pointsElementForPost.TextContent;

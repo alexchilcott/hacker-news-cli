@@ -140,6 +140,11 @@ namespace HackerNewsCli.UnitTests.HackerNews.Scraping
                         )
                     })
                 .SetName("GetPageModelAsync_MultiplePosts_ReturnsPostDataFromPage");
+
+            yield return new TestCaseData(
+                    ReadTestCase(nameof(SuccessTestCases), "single-job-post.html"),
+                    new ScrapedPostContent[0])
+                .SetName("GetPageModelAsync_SingleJobPost_ReturnsNoPosts");
         }
 
         private static IEnumerable<TestCaseData> FailureTestCases()
@@ -149,20 +154,8 @@ namespace HackerNewsCli.UnitTests.HackerNews.Scraping
                 .SetName("GetPageModelAsync_NoPostsFound_ThrowsHackerNewsScrapeException");
 
             yield return new TestCaseData(
-                    ReadTestCase(nameof(FailureTestCases), "single-post-missing-author.html"))
-                .SetName("GetPageModelAsync_NoAuthorElement_ThrowsHackerNewsScrapeException");
-
-            yield return new TestCaseData(
-                    ReadTestCase(nameof(FailureTestCases), "single-post-missing-comments.html"))
-                .SetName("GetPageModelAsync_NoCommentsElement_ThrowsHackerNewsScrapeException");
-
-            yield return new TestCaseData(
                     ReadTestCase(nameof(FailureTestCases), "single-post-missing-rank.html"))
                 .SetName("GetPageModelAsync_NoRankElement_ThrowsHackerNewsScrapeException");
-
-            yield return new TestCaseData(
-                    ReadTestCase(nameof(FailureTestCases), "single-post-missing-score.html"))
-                .SetName("GetPageModelAsync_NoScoreElement_ThrowsHackerNewsScrapeException");
 
             yield return new TestCaseData(
                     ReadTestCase(nameof(FailureTestCases), "single-post-missing-storylink.html"))

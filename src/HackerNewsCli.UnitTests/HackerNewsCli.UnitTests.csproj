@@ -18,9 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="HackerNews\Scraping\FailureTestCases\single-post-missing-comments.html" />
-    <EmbeddedResource Include="HackerNews\Scraping\FailureTestCases\single-post-missing-author.html" />
-    <EmbeddedResource Include="HackerNews\Scraping\FailureTestCases\single-post-missing-score.html" />
     <EmbeddedResource Include="HackerNews\Scraping\FailureTestCases\single-post-missing-storylink.html" />
     <EmbeddedResource Include="HackerNews\Scraping\FailureTestCases\single-post-missing-rank.html" />
     <EmbeddedResource Include="HackerNews\Scraping\SuccessTestCases\single-discussion-post.html" />
@@ -29,6 +26,7 @@
     <EmbeddedResource Include="HackerNews\Scraping\SuccessTestCases\single-post-no-comments.html" />
     <EmbeddedResource Include="HackerNews\Scraping\SuccessTestCases\single-external-link-post.html" />
     <EmbeddedResource Include="HackerNews\Scraping\SuccessTestCases\three-posts.html" />
+    <EmbeddedResource Include="HackerNews\Scraping\SuccessTestCases\single-job-post.html" />
   </ItemGroup>
 
 </Project>
