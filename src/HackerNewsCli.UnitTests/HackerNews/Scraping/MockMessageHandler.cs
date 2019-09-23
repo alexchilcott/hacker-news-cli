@@ -26,7 +26,7 @@ namespace HackerNewsCli.UnitTests.HackerNews.Scraping
                 throw new InvalidOperationException($"No configured handler for request {request.Method} {request.RequestUri}");
             }
 
-            var response = request.CreateResponse();
+            var response = new HttpResponseMessage {RequestMessage = request};
             foundHandler.ConfigureResponse(response);
             return Task.FromResult(response);
         }

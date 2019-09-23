@@ -38,7 +38,6 @@ followed by
 
 * `AngleSharp` and `AngleSharp.IO` are used for the parsing of HTML into a DOM and querying the DOM using CSS selectors.
 * `Newtonsoft.Json` was used for JSON serialization when formatting data for STDOUT.
-* `Microsoft.AspNet.WebApi.Client` was used to include the `HttpContent.ReadAsAsync<T>` extension method.
 * `Microsoft.Extensions.Configuration.Binder` and `Microsoft.Extensions.Configuration.CommandLine` were used to facilitate parsing of command line arguments.
 * `Microsoft.Extensions.DependencyInjection` was included to allow the .NET Core IoC container to be used in order to wire up the components of the application.
 * `NUnit`, `NUnit3TestAdapter`, `Microsoft.NET.Test.Sdk` and `Moq` are used to enable unit testing.
