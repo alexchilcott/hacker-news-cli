@@ -2,6 +2,10 @@
 
 This repository contains my solution for the "Hacker News Scraper Test".
 
+## Update: 23/09/2019
+  - Removed unnecessary library reference to `Microsoft.AspNet.WebApi.Client`. This was left over from an earlier iteration.
+  - Fixed an issue where job posts would cause the scrape to fail. I did not encounter this case during my initial implementation, so I wasn't aware it was a valid scenario. Note: Job posts conflict with the "author is a non empty string" requirement, as they have no author. Because of this, in the case of job posts in the range being scraped, they will simply be ommitted from the results output to the console. (This may mean that the rank of the last scraped post is greater than the number of posts requested.)
+
 ## Assumptions Made
 
 * While using a third party Hacker News API was not allowed, there is an official Hacker News API. I assumed that the purpose of this exercise was to write a tool which scraped the Hacker News HTML rather than one which called their API.
